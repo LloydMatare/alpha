@@ -7,6 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/server.js",
+    "seed:movies": "node prisma/seed.js",
     "generate": "prisma7 generate --config prisma7.config.ts",
     "postinstall": "prisma skills sync || exit 0"
   },

@@ -4893,6 +4893,7 @@ export namespace Prisma {
 
   export type WatchlistItemWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    userId_movieId?: WatchlistItemUserIdMovieIdCompoundUniqueInput
     AND?: WatchlistItemWhereInput | WatchlistItemWhereInput[]
     OR?: WatchlistItemWhereInput[]
     NOT?: WatchlistItemWhereInput | WatchlistItemWhereInput[]
@@ -4905,7 +4906,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"WatchlistItem"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     movie?: XOR<MovieScalarRelationFilter, MovieWhereInput>
-  }, "id">
+  }, "id" | "userId_movieId">
 
   export type WatchlistItemOrderByWithAggregationInput = {
     id?: SortOrder
@@ -5396,6 +5397,11 @@ export namespace Prisma {
   export type MovieScalarRelationFilter = {
     is?: MovieWhereInput
     isNot?: MovieWhereInput
+  }
+
+  export type WatchlistItemUserIdMovieIdCompoundUniqueInput = {
+    userId: string
+    movieId: string
   }
 
   export type WatchlistItemCountOrderByAggregateInput = {

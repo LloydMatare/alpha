@@ -4,6 +4,7 @@ import {connectDB, disconnectDB} from './config/db.js';
 
 import movieRoutes from './routes/movieRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import watchListRoutes from './routes/watchlistRoutes.js';
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use('/', authRoutes);
 app.use('/api', movieRoutes);
+app.use('watchList', watchListRoutes)
 
 
 const server = app.listen(PORT,  () => {
