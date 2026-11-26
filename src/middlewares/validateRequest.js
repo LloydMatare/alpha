@@ -1,11 +1,38 @@
 
 
+// export const validateRequest = (schema) => {
+//   return (req, res, next) => {
+//     const result = schema.safeParse(req.body);
+
+//     if(!result.success) {   {
+//         const errorMessages = result.error.errors.map(err => err.message).join(', ');
+//        const error = errorMessages.join(', ');
+//        return res.status(400).json({ message: error });
+//       }
+//     }
+    
+//     if (result.error) {
+//       return res.status(400).json({ error: result.error.errors[0].message });
+//     }
+//     next();
+//   };
+// };
+
 export const validateRequest = (schema) => {
-  return (req, res, next) => {
-    const { error } = schema.safeParse(req.body);
-    if (error) {
-      return res.status(400).json({ error: error.errors[0].message });
+    return (req, res, next) => {
+         const result = schema.safeParse(req.body);
+
+    if(!result.success) {
+        const formatted = result.error.format();
+
+        const flatErrors = Object.values(formatted).flat().filter(Boolean).map((err) => err._errors).flat();
+        console.log(flatErrors);
+
+        return res.status(400).json({ error: flatErrors.join(', ') });
+
+       
+        
     }
     next();
-  };
-};
+    }
+}

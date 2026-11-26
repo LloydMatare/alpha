@@ -8,7 +8,7 @@ export const watchlistSchema = z.object({
 
 export const addToWatchlistSchema = z.object({
   movieId: z.string().min(1, {message: 'Movie ID is required'}).uuid({message: 'Invalid Movie ID'}),
-  status: z.enum(['WATCHING', 'COMPLETED', 'ON_HOLD', 'DROPPED', 'PLAN_TO_WATCH'],{
+  status: z.enum(['WATCHING', 'COMPLETED', 'PLANNED', 'DROPPED'],{
     error: () =>{
         return {message: 'Invalid status'};
     }
@@ -18,7 +18,7 @@ export const addToWatchlistSchema = z.object({
 });
 
 export const updateWatchlistItemSchema = z.object({
-  status: z.enum(['WATCHING', 'COMPLETED', 'ON_HOLD', 'DROPPED', 'PLAN_TO_WATCH'],{
+  status: z.enum(['WATCHING', 'COMPLETED', 'PLANNED', 'DROPPED'],{
     error: () =>{
         return {message: 'Invalid status'};
     }
